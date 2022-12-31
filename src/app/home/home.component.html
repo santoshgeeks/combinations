@@ -1,0 +1,297 @@
+<nav class="navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand">Teams Combinations</a>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row mx-0 my-2">
+        <div class="col-lg-3 pe-0">
+            <div class="form-group first">
+                <label class="form-label">Wiket Keepers</label>
+                <div class="row">
+                    <div class="col-lg-7 pe-0">
+                        <select (change)="wiketkeepersChange()" [(ngModel)]="wiketKeepersNo">
+                            <option value="0" [selected]="true">Select No of Wiket Keeper</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-1 px-0">
+                        <label>of</label>
+                    </div>
+                    <div class="col-lg-4 px-0">
+                        <input type="number" min="1" [max]="wiketKeepersNo" (change)="stopMaximum()"
+                            [(ngModel)]="combinationOfWiket">
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-0">
+                <label class="form-label px-0 mt-3">Wiket Keeper Names:- {{wiketkeeperTeamSize}} </label>
+                <div class="col-lg-6 px-0" *ngIf="wiketKeepersNo<=4 && wiketKeepersNo>0">
+                    <input type="text" [(ngModel)]="wiketKeeperName1">
+                </div>
+                <div class="col-lg-6 pe-0" *ngIf="wiketKeepersNo<=4 && wiketKeepersNo>1">
+                    <input type="text" [(ngModel)]="wiketKeeperName2">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="wiketKeepersNo<=4 && wiketKeepersNo>2">
+                    <input type="text" [(ngModel)]="wiketKeeperName3">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="wiketKeepersNo<=4 && wiketKeepersNo>3">
+                    <input type="text" [(ngModel)]="wiketKeeperName4">
+                </div>
+                <button  class="btn btn-success ms-auto w-100 mt-1"
+                (click)="calculateTeamSize(wiketKeepersNo,combinationOfWiket,'wiket')">Create Team</button>
+                <div class="col-lg-12 px-0 mt-2">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 ">
+            <div class="form-group second">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <label class="form-label">Batsman</label>
+                        <select (change)="batsmanChange()" [(ngModel)]="BatsmanNo">
+                            <option value="0" [selected]="true">Select No of Batsman</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-1 px-0" style="margin-top: 33px;">
+                        <label>of</label>
+                    </div>
+                    <div class="col-lg-2 ps-0" style="margin-top: 33px;">
+                        <input type="number" min="1" [max]="BatsmanNo" (change)="stopMaximum()"
+                            [(ngModel)]="combinationOfBats">
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-0">
+                <!-- <button class="btn btn-success d-block ms-auto"
+                    (click)="calculateTeamSize(BatsmanNo,combinationOfBats,'batsman')">Size</button> -->
+                <label class="form-label px-0 mt-3">Batsman Names:- {{batsmanTeamSize}}</label>
+                <div class="col-lg-6 px-0" *ngIf="BatsmanNo<=8 && BatsmanNo>2">
+                    <input type="text" [(ngModel)]="batsmanName1">
+                </div>
+                <div class="col-lg-6 pe-0" *ngIf="BatsmanNo<=8 && BatsmanNo>2">
+                    <input type="text" [(ngModel)]="batsmanName2">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="BatsmanNo<=8 && BatsmanNo>2">
+                    <input type="text" [(ngModel)]="batsmanName3">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="BatsmanNo<=8 && BatsmanNo>3">
+                    <input type="text" [(ngModel)]="batsmanName4">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="BatsmanNo<=8 && BatsmanNo>4">
+                    <input type="text" [(ngModel)]="batsmanName5">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="BatsmanNo<=8 && BatsmanNo>5">
+                    <input type="text" [(ngModel)]="batsmanName6">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="BatsmanNo<=8 && BatsmanNo>6">
+                    <input type="text" [(ngModel)]="batsmanName7">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="BatsmanNo<=8 && BatsmanNo>7">
+                    <input type="text" [(ngModel)]="batsmanName8">
+                </div>
+                <button  class="btn btn-success ms-auto w-100 mt-1"
+                (click)="calculateTeamSize(BatsmanNo,combinationOfBats,'batsman')">Create Team</button>
+               
+            </div>
+        </div>
+        <div class="col-lg-2 px-0">
+            <div class="form-group first">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <label class="form-label">All Rounders</label>
+                        <select (change)="alroundersChange()" [(ngModel)]="allroundersNo">
+                            <option value="0" [selected]="true">Select No of All Rounders</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-1 px-0" style="margin-top: 33px;">
+                        <label>of</label>
+                    </div>
+                    <div class="col-lg-4 px-0" style="margin-top: 33px;">
+                        <input type="number" min="1" [max]="allroundersNo" (change)="stopMaximum()"
+                            [(ngModel)]="combinationOfAllRounders">
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-0">
+                <label class="form-label px-0 mt-3">All Rounders Names:- {{allroundersTeamSize}}</label>
+                <div class="col-lg-6 px-0" *ngIf="allroundersNo<=6 && allroundersNo>0">
+                    <input type="text" [(ngModel)]="allRounders1">
+                </div>
+                <div class="col-lg-6 pe-0" *ngIf="allroundersNo<=6 && allroundersNo>1">
+                    <input type="text" [(ngModel)]="allRounders2">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="allroundersNo<=6 && allroundersNo>2">
+                    <input type="text" [(ngModel)]="allRounders3">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="allroundersNo<=6 && allroundersNo>3">
+                    <input type="text" [(ngModel)]="allRounders4">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="allroundersNo<=6 && allroundersNo>4">
+                    <input type="text" [(ngModel)]="allRounders5">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="allroundersNo<=6 && allroundersNo>5">
+                    <input type="text" [(ngModel)]="allRounders6">
+                </div>
+                <button  class="btn btn-success ms-auto w-100 mt-1"
+                (click)="calculateTeamSize(allroundersNo,combinationOfAllRounders,'allrounders')">Create Team</button>
+               
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group second">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <label class="form-label">Bowlers</label>
+                        <select (change)="bowlersChange()" [(ngModel)]="bowlersNo">
+                            <option value="0" [selected]="true">Select No of Bowlers</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-1 px-0" style="margin-top: 33px;">
+                        <label>of</label>
+                    </div>
+                    <div class="col-lg-2 px-0" style="margin-top: 33px;">
+                        <input type="number" min="1" [max]="bowlersNo" (change)="stopMaximum()"
+                            [(ngModel)]="combinationOfBowlers">
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-0">
+                <label class="form-label px-0 mt-3">Bowlers Names:- {{bowlersTeamSize}} </label>
+                <div class="col-lg-6 px-0" *ngIf="bowlersNo<=8 && bowlersNo>2">
+                    <input type="text" [(ngModel)]="bowlersName1">
+                </div>
+                <div class="col-lg-6 pe-0" *ngIf="bowlersNo<=8 && bowlersNo>2">
+                    <input type="text" [(ngModel)]="bowlersName2">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="bowlersNo<=8 && bowlersNo>2">
+                    <input type="text" [(ngModel)]="bowlersName3">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="bowlersNo<=8 && bowlersNo>3">
+                    <input type="text" [(ngModel)]="bowlersName4">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="bowlersNo<=8 && bowlersNo>4">
+                    <input type="text" [(ngModel)]="bowlersName5">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="bowlersNo<=8 && bowlersNo>5">
+                    <input type="text" [(ngModel)]="bowlersName6">
+                </div>
+                <div class="col-lg-6 px-0 mt-2" *ngIf="bowlersNo<=8 && bowlersNo>6">
+                    <input type="text" [(ngModel)]="bowlersName7">
+                </div>
+                <div class="col-lg-6 pe-0 mt-2" *ngIf="bowlersNo<=8 && bowlersNo>7">
+                    <input type="text" [(ngModel)]="bowlersName8">
+                </div>
+                <button  class="btn btn-success ms-auto w-100 mt-1"
+                (click)="calculateTeamSize(bowlersNo,combinationOfBowlers,'bowlers')">Create Team</button>
+                <div class="col-lg-12 px-0 mt-2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-0 my-3 bg">
+        <hr class="my-0">
+        <div class="col-lg-3" style="overflow-x: auto;">
+            <div class="row" style="font-size: 14px;" *ngIf="wiket.length>0" >
+                Weeket Keeper Teams
+            </div>
+            <table style="margin-top: -15px;" >
+                <tbody>
+                    <tr *ngFor="let item1 of wiket; let i=index">
+                        <td> <div class="mt-3">
+                            <input type="checkbox" name="1" id="1">
+                            {{i+1}}</div> </td>
+                        <td *ngFor="let item of item1">
+                            <div class="mt-3">
+                                <span class="teamColor mx-1">{{item}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4" style="overflow-x: auto;">
+            <div class="row" style="font-size:14px;"  *ngIf="batsman.length>0">
+               Batsman Teams
+            </div>
+            <table style="margin-top: -15px;" >
+                <tbody>
+                    <tr *ngFor="let item1 of batsman; let i=index">
+                        <td> <div class="mt-3">
+                            <input type="checkbox" name="2" id="2">
+                            {{i+1}}</div> </td>
+                        <td *ngFor="let item of item1">
+                            <div class="mt-3">
+                                <span class="teamColor mx-1">{{item}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-2" style="overflow-x: auto;">
+            <div class="row" style="font-size: 14px;" *ngIf="allrounders.length>0">
+               Allrounders Teams
+            </div>
+            <table style="margin-top: -15px;" >
+                <tbody>
+                    <tr *ngFor="let item1 of allrounders; let i=index">
+                        <td> <div class="mt-3">
+                            <input type="checkbox" name="3" id="3">
+                            {{i+1}}</div> </td>
+                        <td *ngFor="let item of item1">
+                            <div class="mt-3">
+                                <span class="teamColor mx-1">{{item}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-3" style="overflow-x: auto;">
+            <div class="row" style="font-size: 14px;" *ngIf="bowlers.length>0">
+               Bowllers Teams
+            </div>
+            <table style="margin-top: -15px;" >
+                <tbody>
+                    <tr *ngFor="let item1 of bowlers; let i=index">
+                        <td>
+                            <div class="mt-3">
+                                <input type="checkbox" name="4" id="4">
+                                {{i+1}}
+                            </div> 
+                         
+                        </td>
+                        <td *ngFor="let item of item1">
+                            <div class="mt-3">
+                               
+                                <span class="teamColor mx-1">{{item}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
